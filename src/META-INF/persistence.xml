@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+        					http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+        version="2.0">
+	<persistence-unit name="development" transaction-type="RESOURCE_LOCAL">
+
+		<properties>
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
+			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.connection.password" value="230182"/>			
+		    <property name="hibernate.connection.user" value="OPS$RM65731"/>
+		</properties>
+
+	</persistence-unit>
+</persistence>
