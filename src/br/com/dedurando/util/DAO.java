@@ -7,8 +7,8 @@ import javax.persistence.EntityTransaction;
 
 public class DAO<T> {
 	
-	private final Class<T> klass;
-
+	public final Class<T> klass;
+	
 	public DAO(Class<T> klass) {
 			this.klass = klass;
 	}
@@ -51,5 +51,5 @@ public class DAO<T> {
 	public List<T> findAll(){
 		  EntityManager em = new JPAUtil().getEntityManager();
 		  return em.createQuery("select e from " + klass.getName() + " e").getResultList();
-	 }
+	}
 }
