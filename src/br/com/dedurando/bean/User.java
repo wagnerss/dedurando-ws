@@ -17,6 +17,9 @@ import javax.validation.constraints.NotNull;
 @SequenceGenerator(name="SEQ_GEN_USER", sequenceName="SEQ_DDR_USER", allocationSize=1)
 public class User implements Serializable{
 	
+	public User(){
+		this.setStatus(StatusType.ACTIVE);
+	}
 	private static final long serialVersionUID = 1L;
 	
 	@Id
