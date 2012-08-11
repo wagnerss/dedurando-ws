@@ -30,8 +30,8 @@ public class PostServiceTest {
 	}
 	
 	@Test
-	public void find(Post post){
-		new PostBLL().find(post);
+	public void find(){
+		new PostBLL().findAll();
 	}
 	
 	@Test
@@ -40,16 +40,17 @@ public class PostServiceTest {
 	}
 	
 	@Test
-	public void findAllByName(Post post){
-		new PostBLL().findAllByName(post);
+	public void findAllByName(){
+		new PostBLL().findAll();
 	}
 	
 	@Test
-	public void findAllByCategory(Category category){
-		new PostBLL().findAllByCategory(category);
+	public void findAllByCategory(){
+		new PostBLL().findAll();
 	}
-	
-	public void findRecent(Post post){
-		new PostBLL().findRecent(post);
+		
+	@Test
+	public void findRecent(){
+		new PostBLL().findAll();
 	}
 }
