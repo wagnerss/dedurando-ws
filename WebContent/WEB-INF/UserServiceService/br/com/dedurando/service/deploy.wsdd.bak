@@ -1,0 +1,175 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UserServiceService WSDL service -->
+
+  <service name="UserService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.dedurando.com.br"/>
+      <parameter name="wsdlServiceElement" value="UserServiceService"/>
+      <parameter name="schemaQualified" value="http://business.dedurando.com.br,http://bean.dedurando.com.br,http://service.dedurando.com.br"/>
+      <parameter name="wsdlServicePort" value="UserService"/>
+      <parameter name="className" value="br.com.dedurando.service.UserServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="UserService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="register" qname="operNS:register" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:registerReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:User" xmlns:rtns="http://bean.dedurando.com.br" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://service.dedurando.com.br" type="tns:User" xmlns:tns="http://bean.dedurando.com.br"/>
+        <fault name="RegisterException" qname="fns:fault" xmlns:fns="http://service.dedurando.com.br" class="br.com.dedurando.business.RegisterException" type="tns:RegisterException" xmlns:tns="http://business.dedurando.com.br"/>
+      </operation>
+      <operation name="find" qname="operNS:find" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:findReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:User" xmlns:rtns="http://bean.dedurando.com.br" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://service.dedurando.com.br" type="tns:User" xmlns:tns="http://bean.dedurando.com.br"/>
+      </operation>
+      <operation name="findAll" qname="operNS:findAll" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:findAllReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://service.dedurando.com.br" returnItemQName="tns:item" xmlns:tns="http://service.dedurando.com.br" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://service.dedurando.com.br" type="tns:User" xmlns:tns="http://bean.dedurando.com.br"/>
+      </operation>
+      <operation name="unRegister" qname="operNS:unRegister" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:unRegisterReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:User" xmlns:rtns="http://bean.dedurando.com.br" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://service.dedurando.com.br" type="tns:User" xmlns:tns="http://bean.dedurando.com.br"/>
+        <fault name="RegisterException" qname="fns:fault" xmlns:fns="http://service.dedurando.com.br" class="br.com.dedurando.business.RegisterException" type="tns:RegisterException" xmlns:tns="http://business.dedurando.com.br"/>
+      </operation>
+      <operation name="signIn" qname="operNS:signIn" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:signInReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://service.dedurando.com.br" type="tns:User" xmlns:tns="http://bean.dedurando.com.br"/>
+        <fault name="BusinessException" qname="fns:fault1" xmlns:fns="http://service.dedurando.com.br" class="br.com.dedurando.business.BusinessException" type="tns:BusinessException" xmlns:tns="http://business.dedurando.com.br"/>
+      </operation>
+      <operation name="resetPassword" qname="operNS:resetPassword" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:resetPasswordReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://service.dedurando.com.br" type="tns:User" xmlns:tns="http://bean.dedurando.com.br"/>
+        <fault name="BusinessException" qname="fns:fault1" xmlns:fns="http://service.dedurando.com.br" class="br.com.dedurando.business.BusinessException" type="tns:BusinessException" xmlns:tns="http://business.dedurando.com.br"/>
+      </operation>
+      <parameter name="allowedMethods" value="register resetPassword unRegister findAll signIn find"/>
+
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>findResponse"
+        type="java:br.com.dedurando.service.FindResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>findAll"
+        type="java:br.com.dedurando.service.FindAll"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>findAllResponse"
+        type="java:br.com.dedurando.service.FindAllResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>resetPasswordResponse"
+        type="java:br.com.dedurando.service.ResetPasswordResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>register"
+        type="java:br.com.dedurando.service.Register"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>unRegister"
+        type="java:br.com.dedurando.service.UnRegister"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://business.dedurando.com.br"
+        qname="ns:BusinessException"
+        type="java:br.com.dedurando.business.BusinessException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://bean.dedurando.com.br"
+        qname="ns:User"
+        type="java:br.com.dedurando.bean.User"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>registerResponse"
+        type="java:br.com.dedurando.service.RegisterResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>resetPassword"
+        type="java:br.com.dedurando.service.ResetPassword"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>find"
+        type="java:br.com.dedurando.service.Find"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>signIn"
+        type="java:br.com.dedurando.service.SignIn"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://business.dedurando.com.br"
+        qname="ns:RegisterException"
+        type="java:br.com.dedurando.business.RegisterException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>unRegisterResponse"
+        type="java:br.com.dedurando.service.UnRegisterResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://service.dedurando.com.br"
+        qname="ns:>signInResponse"
+        type="java:br.com.dedurando.service.SignInResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
