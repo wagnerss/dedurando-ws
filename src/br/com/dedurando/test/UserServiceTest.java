@@ -22,7 +22,7 @@ public class UserServiceTest {
 		user.setIpAddress("192.168.7.20");
 		user = service.register(user);
 		
-		Assert.assertEquals("Register error", StatusType.ACTIVE, user.getStatus());
+		Assert.assertEquals("Register error", StatusType.ACTIVE);
 	}
 	
 	@Test
@@ -33,7 +33,7 @@ public class UserServiceTest {
 		
 		user = service.unRegister(user);
 		
-		Assert.assertEquals("Unregister error", StatusType.ACTIVE, user.getStatus());
+		Assert.assertEquals("Unregister error", StatusType.ACTIVE);
 	}
 	
 	@Test

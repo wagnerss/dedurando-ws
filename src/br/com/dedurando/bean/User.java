@@ -77,14 +77,6 @@ public class User implements Serializable{
 		this.userId = userId;
 	}
 
-	public StatusType getStatus() {
-		return StatusType.parse(status);
-	}
-
-	public void setStatus(StatusType status) {
-		this.status = status.getStatus();
-	}
-
 	public String getMail() {
 		return mail;
 	}

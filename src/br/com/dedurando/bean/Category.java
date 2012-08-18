@@ -2,6 +2,7 @@ package br.com.dedurando.bean;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,13 +28,12 @@ public class Category implements Serializable{
 	
 	@OneToMany
     @JoinColumn(name="CATEGORY_ID")
-    private Collection<Category> categories;
+    private Category[]  categories;
 	
 	@Column(name="NAME",length=30)
 	private String name;
 	
-	@Column(name="STATUS")
-	private StatusType status;
+	
 
 	public Long getCategoryId() {
 		return categoryId;
@@ -43,11 +43,11 @@ public class Category implements Serializable{
 		this.categoryId = categoryId;
 	}
 
-	public Collection<Category> getCategories() {
+	public Category[] getCategories() {
 		return categories;
 	}
 
-	public void setCategories(Collection<Category> categories) {
+	public void setCategories(Category[]  categories) {
 		this.categories = categories;
 	}
 
@@ -59,12 +59,6 @@ public class Category implements Serializable{
 		this.name = name;
 	}
 
-	public StatusType getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusType status) {
-		this.status = status;
-	}
+	
 
 }

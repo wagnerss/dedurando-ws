@@ -29,8 +29,6 @@ public class Comment implements Serializable {
 	@JoinColumn(name="POST_ID")
 	private Post post;
 	
-	@Column(name="STATUS")
-	private StatusType status;
 
 	@Column(name="LIKE")
 	private boolean like;
@@ -57,14 +55,7 @@ public class Comment implements Serializable {
 		this.post = post;
 	}
 
-	public StatusType getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusType status) {
-		this.status = status;
-	}
-
+	
 	public boolean isLike() {
 		return like;
 	}
