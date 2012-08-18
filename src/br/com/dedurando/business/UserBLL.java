@@ -22,7 +22,7 @@ public class UserBLL extends BLL<User> {
 	
 	public User register(User user) throws BusinessException{
 		user.setCreated_at(GregorianCalendar.getInstance());
-		user.setStatus(StatusType.ACTIVE);
+		//user.setStatus(StatusType.ACTIVE);
 		
 		this.validate(user);
 		
@@ -34,7 +34,7 @@ public class UserBLL extends BLL<User> {
 		if(user == null){
 			throw new BusinessException("Invalid user.");
 		}
-		user.setStatus(StatusType.INACTIVE);
+		//user.setStatus(StatusType.INACTIVE);
 			
 		return this.save(user);
 	}
@@ -50,9 +50,9 @@ public class UserBLL extends BLL<User> {
 			throw new BusinessException("Invalid user name or password.");
 		}
 		
-		if (user.getStatus() == StatusType.INACTIVE){
-			throw new BusinessException("The user is inactive.");
-		}			
+//		if (user.getStatus() == StatusType.INACTIVE){
+//			throw new BusinessException("The user is inactive.");
+//		}			
 		
 		return true;
 	}

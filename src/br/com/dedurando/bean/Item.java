@@ -17,6 +17,8 @@ import javax.persistence.Table;
 @SequenceGenerator(name="SEQ_GEN_ITEM", sequenceName="SEQ_ITEM", allocationSize=1)
 public class Item implements Serializable{
 	
+	public Item(){}
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -31,8 +33,8 @@ public class Item implements Serializable{
 	@Column(name="NAME", length=50)
 	private String name;
 
-	@Column(name="STATUS")
-	private StatusType status;
+//	@Column(name="STATUS")
+//	private StatusType status;
 
 	public Long getItemId() {
 		return itemId;
@@ -58,13 +60,13 @@ public class Item implements Serializable{
 		this.name = name;
 	}
 
-	public StatusType getStatus() {
-		return status;
-	}
-
-	public void setStatus(StatusType status) {
-		this.status = status;
-	}
+//	public StatusType getStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(StatusType status) {
+//		this.status = status;
+//	}
 
 	public String getDescription() {
 		return description;

@@ -1,0 +1,79 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\milton\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\DDR-WebService\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="PostService" provider="java:RPC" style="wrapped" use="literal">
+  <ns3:operation name="find" qname="ns1:find" returnQName="ns1:findReturn" returnType="ns2:Post" soapAction="" xmlns:ns1="http://service.dedurando.com.br" xmlns:ns2="http://bean.dedurando.com.br" xmlns:ns3="http://xml.apache.org/axis/wsdd/">
+   <ns3:parameter qname="ns1:post" type="ns2:Post"/>
+  </ns3:operation>
+  <ns1:operation name="save" qname="ns3:save" returnQName="ns3:saveReturn" returnType="ns4:Post" soapAction="" xmlns:ns3="http://service.dedurando.com.br" xmlns:ns4="http://bean.dedurando.com.br">
+   <ns1:parameter qname="ns3:post" type="ns4:Post"/>
+   <ns1:fault class="br.com.dedurando.business.BusinessException" qname="ns3:fault" type="ns5:BusinessException" xmlns:ns5="http://business.dedurando.com.br"/>
+  </ns1:operation>
+  <ns1:operation name="findAllByNameUser" qname="ns6:findAllByNameUser" returnQName="ns6:findAllByNameUserReturn" returnType="ns7:Post" soapAction="" xmlns:ns6="http://service.dedurando.com.br" xmlns:ns7="http://bean.dedurando.com.br">
+   <ns1:parameter qname="ns6:post" type="ns7:Post"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="save findAllByNameUser find"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="PostService"/>
+  <ns1:parameter name="className" value="br.com.dedurando.service.PostService"/>
+  <ns1:parameter name="wsdlServicePort" value="PostService"/>
+  <ns1:parameter name="schemaQualified" value="http://business.dedurando.com.br,http://bean.dedurando.com.br,http://service.dedurando.com.br"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://service.dedurando.com.br"/>
+  <ns1:parameter name="wsdlServiceElement" value="PostServiceService"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:Category" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.bean.Category" xmlns:ns8="http://bean.dedurando.com.br"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns9:Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.bean.Item" xmlns:ns9="http://bean.dedurando.com.br"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns10:Post" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.bean.Post" xmlns:ns10="http://bean.dedurando.com.br"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns11:User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.bean.User" xmlns:ns11="http://bean.dedurando.com.br"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns12:BusinessException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.business.BusinessException" xmlns:ns12="http://business.dedurando.com.br"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns13:Place" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.bean.Place" xmlns:ns13="http://bean.dedurando.com.br"/>
+  <ns1:arrayMapping innerType="ns15:Category" languageSpecificType="java:br.com.dedurando.bean.Category[]" qname="ns14:ArrayOf_tns1_Category" xmlns:ns14="http://service.dedurando.com.br" xmlns:ns15="http://bean.dedurando.com.br"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>
