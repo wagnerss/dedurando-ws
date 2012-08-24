@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -29,11 +29,11 @@
   </ns1:operation>
   <ns1:operation name="findAll" qname="ns4:findAll" soapAction="" xmlns:ns4="http://test.dedurando.com.br"/>
   <ns1:parameter name="allowedMethods" value="save findAll find"/>
-  <ns1:parameter name="wsdlPortType" value="CategoryServiceTest"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://business.dedurando.com.br,http://test.dedurando.com.br"/>
-  <ns1:parameter name="wsdlServicePort" value="CategoryServiceTest"/>
+  <ns1:parameter name="wsdlPortType" value="CategoryServiceTest"/>
   <ns1:parameter name="className" value="br.com.dedurando.test.CategoryServiceTest"/>
+  <ns1:parameter name="wsdlServicePort" value="CategoryServiceTest"/>
+  <ns1:parameter name="schemaQualified" value="http://business.dedurando.com.br,http://test.dedurando.com.br"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://test.dedurando.com.br"/>
   <ns1:parameter name="wsdlServiceElement" value="CategoryServiceTestService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns5:BusinessException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.business.BusinessException" xmlns:ns5="http://business.dedurando.com.br"/>
@@ -60,11 +60,11 @@
    <ns1:parameter qname="ns19:post" type="ns20:Post"/>
   </ns1:operation>
   <ns1:parameter name="allowedMethods" value="save findAllByCategory findAll findAllByLatitudeAndLongitude findRecent findAllByName find"/>
-  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="wsdlPortType" value="PostService"/>
-  <ns1:parameter name="className" value="br.com.dedurando.service.PostService"/>
-  <ns1:parameter name="wsdlServicePort" value="PostService"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://business.dedurando.com.br,http://bean.dedurando.com.br,http://service.dedurando.com.br"/>
+  <ns1:parameter name="wsdlServicePort" value="PostService"/>
+  <ns1:parameter name="className" value="br.com.dedurando.service.PostService"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://service.dedurando.com.br"/>
   <ns1:parameter name="wsdlServiceElement" value="PostServiceService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns21:Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.bean.Item" xmlns:ns21="http://bean.dedurando.com.br"/>
@@ -103,22 +103,22 @@
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns36:Category" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.bean.Category" xmlns:ns36="http://bean.dedurando.com.br"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns37:BusinessException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.business.BusinessException" xmlns:ns37="http://business.dedurando.com.br"/>
  </ns1:service>
- <ns1:service name="Version" provider="java:RPC">
-  <ns1:parameter name="allowedMethods" value="getVersion"/>
-  <ns1:parameter name="className" value="org.apache.axis.Version"/>
- </ns1:service>
  <ns1:service name="Teste" provider="java:RPC" style="wrapped" use="literal">
   <ns1:operation name="teste" qname="ns38:teste" returnQName="ns38:testeReturn" returnType="xsd:string" soapAction="" xmlns:ns38="http://service.dedurando.com.br" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
   <ns1:operation name="testeR" qname="ns39:testeR" returnQName="ns39:testeRReturn" returnType="ns40:ReviewReason" soapAction="" xmlns:ns39="http://service.dedurando.com.br" xmlns:ns40="http://bean.dedurando.com.br"/>
   <ns1:parameter name="allowedMethods" value="testeR teste"/>
-  <ns1:parameter name="wsdlPortType" value="Teste"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
-  <ns1:parameter name="schemaQualified" value="http://bean.dedurando.com.br,http://service.dedurando.com.br"/>
-  <ns1:parameter name="wsdlServicePort" value="Teste"/>
+  <ns1:parameter name="wsdlPortType" value="Teste"/>
   <ns1:parameter name="className" value="br.com.dedurando.service.Teste"/>
+  <ns1:parameter name="wsdlServicePort" value="Teste"/>
+  <ns1:parameter name="schemaQualified" value="http://bean.dedurando.com.br,http://service.dedurando.com.br"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://service.dedurando.com.br"/>
   <ns1:parameter name="wsdlServiceElement" value="TesteService"/>
   <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns41:ReviewReason" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:br.com.dedurando.bean.ReviewReason" xmlns:ns41="http://bean.dedurando.com.br"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
  </ns1:service>
  <ns1:transport name="http">
   <ns1:requestFlow>
