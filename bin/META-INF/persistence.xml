@@ -37,13 +37,22 @@
         </properties>
     </persistence-unit>
     
+    <persistence-unit name="developmentwill" transaction-type="RESOURCE_LOCAL">
+		<properties>
+			<property name="hibernate.connection.url" value="jdbc:mysql://mysql02.webserverbr.net:3306/dedurando"/>
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+			<property name="hibernate.connection.password" value="w2gdb"/>
+			<property name="hibernate.connection.username" value="dedurando"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+		</properties>
+	</persistence-unit>
     <persistence-unit name="development" transaction-type="RESOURCE_LOCAL">
-<properties>
-<property name="hibernate.connection.url" value="jdbc:mysql://mysql02.webserverbr.net:3306/dedurando"/>
-<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-<property name="hibernate.connection.password" value="w2gdb"/>
-<property name="hibernate.connection.username" value="dedurando"/>
-<property name="hibernate.hbm2ddl.auto" value="create"/>
-</properties>
-</persistence-unit>
+		<properties>
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/dedurando"/>
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+			<property name="hibernate.connection.password" value="root"/>
+			<property name="hibernate.connection.username" value="root"/>	
+				
+		</properties>
+	</persistence-unit>
 </persistence>
