@@ -33,6 +33,15 @@ public class DAO<T> {
 		return entity;
 	}
 	
+	public T insert(T entity) {
+		EntityManager em = new JPAUtil().getEntityManager();
+		EntityTransaction t = em.getTransaction();
+		t.begin();
+		em.persist(entity);
+		t.commit();
+		return entity;
+	}
+	
 	public T update(T entity) {
 		EntityManager em = new JPAUtil().getEntityManager();
 		EntityTransaction t = em.getTransaction();

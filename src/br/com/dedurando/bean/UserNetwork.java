@@ -5,26 +5,23 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity(name="userNetwork")
 @Table(name="USER_NETWORK")
-@SequenceGenerator(name="seqUserNetwork", sequenceName="SEQ_USER_NETWORK", allocationSize=1)
+//@SequenceGenerator(name="seqUserNetwork", sequenceName="SEQ_USER_NETWORK", allocationSize=1)
 public class UserNetwork implements Serializable{
 
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="seqUserNetwork", strategy=GenerationType.SEQUENCE)
-	@Column(name="ID")
+	//@GeneratedValue(generator="seqUserNetwork", strategy=GenerationType.SEQUENCE)
+	@Column(name="USER_ID")
 	private Long id;
 	
-	@Column(name="CREATE_AT")
+	@Column(name="CREATED_AT")
 	private Calendar createdAt;
 	
 	

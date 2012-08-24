@@ -13,11 +13,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <complexType name="ArrayOf_tns1_Category">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Category"/>
-    </sequence>
-   </complexType>
    <element name="findResponse">
     <complexType>
      <sequence>
@@ -40,29 +35,80 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </complexType>
    </element>
    <element name="fault" type="tns2:BusinessException"/>
-   <element name="findAllByNameUser">
+   <element name="findAll">
+    <complexType/>
+   </element>
+   <element name="findAllResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="findAllReturn" type="tns1:Post"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findAllByName">
     <complexType>
      <sequence>
       <element name="post" type="tns1:Post"/>
      </sequence>
     </complexType>
    </element>
-   <element name="findAllByNameUserResponse">
+   <element name="findAllByNameResponse">
     <complexType>
      <sequence>
-      <element maxOccurs="unbounded" name="findAllByNameUserReturn" type="tns1:Post"/>
+      <element maxOccurs="unbounded" name="findAllByNameReturn" type="tns1:Post"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findAllByCategory">
+    <complexType>
+     <sequence>
+      <element name="category" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findAllByCategoryResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="findAllByCategoryReturn" type="tns1:Post"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findRecent">
+    <complexType>
+     <sequence>
+      <element name="post" type="tns1:Post"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findRecentResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="findRecentReturn" type="tns1:Post"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findAllByLatitudeAndLongitude">
+    <complexType>
+     <sequence>
+      <element name="post" type="tns1:Post"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findAllByLatitudeAndLongitudeResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="findAllByLatitudeAndLongitudeReturn" type="tns1:Post"/>
      </sequence>
     </complexType>
    </element>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://bean.dedurando.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://service.dedurando.com.br"/>
    <import namespace="http://business.dedurando.com.br"/>
    <complexType name="Category">
     <sequence>
-     <element name="categories" nillable="true" type="impl:ArrayOf_tns1_Category"/>
      <element name="categoryId" nillable="true" type="xsd:long"/>
      <element name="name" nillable="true" type="xsd:string"/>
+     <element name="status" type="xsd:int"/>
     </sequence>
    </complexType>
    <complexType name="Item">
@@ -71,16 +117,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="description" nillable="true" type="xsd:string"/>
      <element name="itemId" nillable="true" type="xsd:long"/>
      <element name="name" nillable="true" type="xsd:string"/>
+     <element name="status" type="xsd:int"/>
     </sequence>
    </complexType>
    <complexType name="Place">
     <sequence>
      <element name="address" nillable="true" type="xsd:string"/>
      <element name="city" nillable="true" type="xsd:string"/>
-     <element name="complements" nillable="true" type="xsd:string"/>
+     <element name="complement" nillable="true" type="xsd:string"/>
      <element name="country" nillable="true" type="xsd:string"/>
-     <element name="latitude" type="xsd:long"/>
-     <element name="longitude" type="xsd:long"/>
+     <element name="latitude" type="xsd:double"/>
+     <element name="longitude" type="xsd:double"/>
+     <element name="name" nillable="true" type="xsd:string"/>
      <element name="neighborhood" nillable="true" type="xsd:string"/>
      <element name="number" type="xsd:long"/>
      <element name="placeId" type="xsd:long"/>
@@ -101,6 +149,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="phone" nillable="true" type="xsd:string"/>
      <element name="photo" nillable="true" type="xsd:base64Binary"/>
      <element name="resetPasswordToken" nillable="true" type="xsd:string"/>
+     <element name="status" type="xsd:int"/>
      <element name="userId" nillable="true" type="xsd:long"/>
     </sequence>
    </complexType>
@@ -117,13 +166,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    </complexType>
   </schema>
   <schema elementFormDefault="qualified" targetNamespace="http://business.dedurando.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
-   <import namespace="http://service.dedurando.com.br"/>
    <import namespace="http://bean.dedurando.com.br"/>
    <complexType name="BusinessException">
     <sequence/>
    </complexType>
   </schema>
  </wsdl:types>
+
+   <wsdl:message name="findAllByLatitudeAndLongitudeRequest">
+
+      <wsdl:part element="impl:findAllByLatitudeAndLongitude" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllByLatitudeAndLongitudeResponse">
+
+      <wsdl:part element="impl:findAllByLatitudeAndLongitudeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findRecentResponse">
+
+      <wsdl:part element="impl:findRecentResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllByNameRequest">
+
+      <wsdl:part element="impl:findAllByName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findRequest">
+
+      <wsdl:part element="impl:find" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllByNameResponse">
+
+      <wsdl:part element="impl:findAllByNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
 
    <wsdl:message name="findResponse">
 
@@ -133,9 +229,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="findAllByNameUserResponse">
+   <wsdl:message name="findAllResponse">
 
-      <wsdl:part element="impl:findAllByNameUserResponse" name="parameters">
+      <wsdl:part element="impl:findAllResponse" name="parameters">
 
       </wsdl:part>
 
@@ -149,6 +245,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="findAllByCategoryRequest">
+
+      <wsdl:part element="impl:findAllByCategory" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="BusinessException">
 
       <wsdl:part element="impl:fault" name="fault">
@@ -157,9 +261,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="findAllByNameUserRequest">
+   <wsdl:message name="findAllByCategoryResponse">
 
-      <wsdl:part element="impl:findAllByNameUser" name="parameters">
+      <wsdl:part element="impl:findAllByCategoryResponse" name="parameters">
 
       </wsdl:part>
 
@@ -173,9 +277,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="findRequest">
+   <wsdl:message name="findAllRequest">
 
-      <wsdl:part element="impl:find" name="parameters">
+      <wsdl:part element="impl:findAll" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findRecentRequest">
+
+      <wsdl:part element="impl:findRecent" name="parameters">
 
       </wsdl:part>
 
@@ -211,13 +323,61 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="findAllByNameUser">
+      <wsdl:operation name="findAll">
 
-         <wsdl:input message="impl:findAllByNameUserRequest" name="findAllByNameUserRequest">
+         <wsdl:input message="impl:findAllRequest" name="findAllRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:findAllByNameUserResponse" name="findAllByNameUserResponse">
+         <wsdl:output message="impl:findAllResponse" name="findAllResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAllByName">
+
+         <wsdl:input message="impl:findAllByNameRequest" name="findAllByNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findAllByNameResponse" name="findAllByNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAllByCategory">
+
+         <wsdl:input message="impl:findAllByCategoryRequest" name="findAllByCategoryRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findAllByCategoryResponse" name="findAllByCategoryResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findRecent">
+
+         <wsdl:input message="impl:findRecentRequest" name="findRecentRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findRecentResponse" name="findRecentResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAllByLatitudeAndLongitude">
+
+         <wsdl:input message="impl:findAllByLatitudeAndLongitudeRequest" name="findAllByLatitudeAndLongitudeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findAllByLatitudeAndLongitudeResponse" name="findAllByLatitudeAndLongitudeResponse">
 
        </wsdl:output>
 
@@ -271,17 +431,89 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="findAllByNameUser">
+      <wsdl:operation name="findAll">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="findAllByNameUserRequest">
+         <wsdl:input name="findAllRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="findAllByNameUserResponse">
+         <wsdl:output name="findAllResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAllByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findAllByNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findAllByNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAllByCategory">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findAllByCategoryRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findAllByCategoryResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findRecent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findRecentRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findRecentResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAllByLatitudeAndLongitude">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findAllByLatitudeAndLongitudeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findAllByLatitudeAndLongitudeResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -295,7 +527,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:PostServiceSoapBinding" name="PostService">
 
-         <wsdlsoap:address location="http://localhost:8080/DDR-WebService/services/PostService"/>
+         <wsdlsoap:address location="http://localhost:8081/dedurando-ws/services/PostService"/>
 
       </wsdl:port>
 

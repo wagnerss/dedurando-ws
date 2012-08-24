@@ -6,31 +6,33 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="DDR_COMMENT")
-@SequenceGenerator(name="SEG_GEN_COMMENT", sequenceName="SEQ_COMMENT", allocationSize=1)
+@Table(name="DDR_POST_COMMENT")
+//@SequenceGenerator(name="SEG_GEN_COMMENT", sequenceName="SEG_GEN_COMMENT", allocationSize=1)
 public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="COMMENT_ID")
-	@GeneratedValue(generator="SEG_GEN_COMMENT", strategy=GenerationType.SEQUENCE)
+	@Column(name="POST_COMMENT_ID")
+	@GeneratedValue//(generator="SEG_GEN_COMMENT", strategy=GenerationType.SEQUENCE)
 	private Long commentId;
 	
+	@NotNull(message= "Post cannot be null.")
 	@ManyToOne
 	@JoinColumn(name="POST_ID")
 	private Post post;
 	
+	@Column(name="STATUS")
+	private int status;
 
-	@Column(name="LIKE")
+	@Column(name="\"LIKE\"")
 	private boolean like;
 	
 	@Column(name="DESCRIPTION", nullable = false)
@@ -55,8 +57,15 @@ public class Comment implements Serializable {
 		this.post = post;
 	}
 
-	
-	public boolean isLike() {
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusType status) {
+		this.status = status.getStatus();
+	}
+
+	public boolean getLike() {
 		return like;
 	}
 

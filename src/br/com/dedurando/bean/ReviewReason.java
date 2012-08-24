@@ -1,31 +1,47 @@
 package br.com.dedurando.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="DDR_REVIEW_REASON")
-@SequenceGenerator(name="SEQ_GEN_REVIEW_REASON", sequenceName="SEQ_REVIEW_REASON", allocationSize=1)
-public class ReviewReason {
+//@SequenceGenerator(name="SEQ_GEN_REVIEW_REASON", sequenceName="SEQ_GEN_REVIEW_REASON", allocationSize=1)
+public class ReviewReason implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="SEQ_GEN_REVIEW_REASON", strategy=GenerationType.SEQUENCE)
+	@GeneratedValue//(generator="SEQ_GEN_REVIEW_REASON", strategy=GenerationType.SEQUENCE)
 	@Column(name="REVIEW_REASON_ID")
-	private long previewReasonId;
+	private long reviewReasonId;
 	
 	@Column(name="DESCRIPTION")
 	private String description;
 	
-	public long getPreviewReasonId() {
-		return previewReasonId;
+	@Column(name="STATUS")
+	private int status;
+	
+	public int getStatus() {
+		return status;
 	}
-	public void setPreviewReasonId(long previewReasonId) {
-		this.previewReasonId = previewReasonId;
+	
+	public void setStatus(StatusType status) {
+		this.status = status.getStatus();
+	}
+	
+	public long getReviewReasonId() {
+		return reviewReasonId;
+	}
+	public void setReviewReasonId(long reviewReasonId) {
+		this.reviewReasonId = reviewReasonId;
 	}
 	public String getDescription() {
 		return description;

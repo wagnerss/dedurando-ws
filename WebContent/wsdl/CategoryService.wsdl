@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.dedurando.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.dedurando.com.br" xmlns:intf="http://service.dedurando.com.br" xmlns:tns1="http://bean.dedurando.com.br" xmlns:tns2="http://business.dedurando.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.dedurando.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://bean.dedurando.com.br"/>
+   <import namespace="http://business.dedurando.com.br"/>
+   <element name="find">
+    <complexType>
+     <sequence>
+      <element name="category" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findResponse">
+    <complexType>
+     <sequence>
+      <element name="findReturn" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="save">
+    <complexType>
+     <sequence>
+      <element name="category" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="saveResponse">
+    <complexType>
+     <sequence>
+      <element name="saveReturn" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns2:BusinessException"/>
+   <element name="findAll">
+    <complexType/>
+   </element>
+   <element name="findAllResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="findAllReturn" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findByName">
+    <complexType>
+     <sequence>
+      <element name="category" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="findByNameResponse">
+    <complexType>
+     <sequence>
+      <element name="findByNameReturn" type="tns1:Category"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://bean.dedurando.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://business.dedurando.com.br"/>
+   <complexType name="Category">
+    <sequence>
+     <element name="categoryId" nillable="true" type="xsd:long"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="status" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://business.dedurando.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://bean.dedurando.com.br"/>
+   <complexType name="BusinessException">
+    <sequence/>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="findResponse">
+
+      <wsdl:part element="impl:findResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllResponse">
+
+      <wsdl:part element="impl:findAllResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="saveRequest">
+
+      <wsdl:part element="impl:save" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findByNameRequest">
+
+      <wsdl:part element="impl:findByName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="BusinessException">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findByNameResponse">
+
+      <wsdl:part element="impl:findByNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllRequest">
+
+      <wsdl:part element="impl:findAll" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="saveResponse">
+
+      <wsdl:part element="impl:saveResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findRequest">
+
+      <wsdl:part element="impl:find" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CategoryService">
+
+      <wsdl:operation name="find">
+
+         <wsdl:input message="impl:findRequest" name="findRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findResponse" name="findResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="save">
+
+         <wsdl:input message="impl:saveRequest" name="saveRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:saveResponse" name="saveResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:BusinessException" name="BusinessException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAll">
+
+         <wsdl:input message="impl:findAllRequest" name="findAllRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findAllResponse" name="findAllResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findByName">
+
+         <wsdl:input message="impl:findByNameRequest" name="findByNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findByNameResponse" name="findByNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CategoryServiceSoapBinding" type="impl:CategoryService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="find">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="save">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="saveRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="saveResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="BusinessException">
+
+            <wsdlsoap:fault name="BusinessException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAll">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findAllRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findAllResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findByNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findByNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CategoryServiceService">
+
+      <wsdl:port binding="impl:CategoryServiceSoapBinding" name="CategoryService">
+
+         <wsdlsoap:address location="http://localhost:8081/dedurando-ws/services/CategoryService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

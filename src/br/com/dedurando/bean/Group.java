@@ -5,24 +5,21 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="DDR_GROUP")
-@SequenceGenerator(name="seqGroup", sequenceName="SEQ_GROUP", allocationSize=1)
+//@SequenceGenerator(name="seqGroup", sequenceName="SEQ_GROUP", allocationSize=1)
 public class Group implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(generator="seqGroup", strategy=GenerationType.SEQUENCE)
+	//@GeneratedValue(generator="seqGroup", strategy=GenerationType.SEQUENCE)
 	@Column(name="GROUP_ID")
 	private Long id;
 	
