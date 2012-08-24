@@ -42,7 +42,7 @@ public class Post implements Serializable{
 	@Column(name="PHOTO")
 	private byte[] photo;
 	
-	@Column(name="LEGEND",length=40,nullable=true,unique=true)
+	@Column(name="LEGEND",length=40)
 	private String legend;
 
 	@NotNull(message= "Created At cannot be null.")
