@@ -26,4 +26,10 @@ public class PostDAO extends DAO<Post>{
 		 EntityManager em = new JPAUtil().getEntityManager();
 		 return em.createQuery("select e from " + klass.getName() + " e").getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Post> findAllByLatitudeAndLongitude(Post post) {
+		 EntityManager em = new JPAUtil().getEntityManager();
+		 return em.createQuery("select e from " + klass.getName() + " e").getResultList();
+	}
 }

@@ -1,40 +1,55 @@
 package br.com.dedurando.service;
 
+import java.util.List;
 
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+import br.com.dedurando.bean.Category;
 import br.com.dedurando.bean.Post;
 import br.com.dedurando.business.BusinessException;
 import br.com.dedurando.business.PostBLL;
 
-public class PostService {
-	
+@WebService
+public class PostService{
+
+	@WebMethod
 	public Post save(Post post) throws BusinessException{
 		return new PostBLL().save(post);
 	}
 	
+	@WebMethod
 	public Post find(Post post){
 		return new PostBLL().find(post);
 	}
 	
-//	public List<Post> findAll(){
-//		return new PostBLL().findAll();
-//	}
-//	
-//	
-//	public List<Post> findAllByName(Post post){
-//		return new PostBLL().findAllByName(post);
-//	}
-//	
-	public Post[] findAllByNameUser(Post post){
-		return (Post[]) new PostBLL().findAllByName(post).toArray();
+	@WebMethod
+	public Post[] findAll(){
+		List<Post> posts = new PostBLL().findAll();
+		return posts.toArray(new Post[posts.size()]);
 	}
 	
+	@WebMethod
+	public Post[] findAllByName(Post post){
+		List<Post> posts = new PostBLL().findAllByName(post);
+		return posts.toArray(new Post[posts.size()]);
+	}
 	
-//	public List<Post> findAllByCategory(Category category){
-//		return new PostBLL().findAllByCategory(category);
-//	}
-//	
-//	public List<Post> findRecent(Post post){
-//		return new PostBLL().findRecent(post);
-//	}
+	@WebMethod
+	public Post[] findAllByCategory(Category category){
+		List<Post> posts = new PostBLL().findAllByCategory(category);
+		return posts.toArray(new Post[posts.size()]);
+	}
 	
+	@WebMethod
+	public Post[] findRecent(Post post){
+		List<Post> posts = new PostBLL().findRecent(post);
+		return posts.toArray(new Post[posts.size()]);
+	}	
+	
+	@WebMethod
+	public Post[] findAllByLatitudeAndLongitude(Post post){
+		List<Post> posts = new PostBLL().findRecent(post);
+		return posts.toArray(new Post[posts.size()]);
+	}	
 }

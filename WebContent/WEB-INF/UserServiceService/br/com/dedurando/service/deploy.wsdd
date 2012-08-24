@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from UserServiceService WSDL service -->
+
+  <service name="UserService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.dedurando.com.br"/>
+      <parameter name="wsdlServiceElement" value="UserServiceService"/>
+      <parameter name="schemaQualified" value="http://business.dedurando.com.br,http://bean.dedurando.com.br,http://service.dedurando.com.br"/>
+      <parameter name="wsdlServicePort" value="UserService"/>
+      <parameter name="className" value="br.com.dedurando.service.UserService"/>
+      <parameter name="wsdlPortType" value="UserService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="register" qname="operNS:register" returnQName="retNS:registerReturn" returnType="rtns:User" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:user" type="tns:User"/>
+        <fault xmlns:fns="http://service.dedurando.com.br" xmlns:tns="http://business.dedurando.com.br" name="RegisterException" qname="fns:fault" class="br.com.dedurando.business.RegisterException" type="tns:RegisterException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="find" qname="operNS:find" returnQName="retNS:findReturn" returnType="rtns:User" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:user" type="tns:User"/>
+      </operation>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="findAll" qname="operNS:findAll" returnQName="retNS:findAllReturn" returnType="rtns:User" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:user" type="tns:User"/>
+      </operation>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="unRegister" qname="operNS:unRegister" returnQName="retNS:unRegisterReturn" returnType="rtns:User" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:user" type="tns:User"/>
+        <fault xmlns:fns="http://service.dedurando.com.br" xmlns:tns="http://business.dedurando.com.br" name="RegisterException" qname="fns:fault" class="br.com.dedurando.business.RegisterException" type="tns:RegisterException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="signIn" qname="operNS:signIn" returnQName="retNS:signInReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:user" type="tns:User"/>
+        <fault xmlns:fns="http://service.dedurando.com.br" xmlns:tns="http://business.dedurando.com.br" name="BusinessException" qname="fns:fault1" class="br.com.dedurando.business.BusinessException" type="tns:BusinessException"/>
+      </operation>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="resetPassword" qname="operNS:resetPassword" returnQName="retNS:resetPasswordReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:user" type="tns:User"/>
+        <fault xmlns:fns="http://service.dedurando.com.br" xmlns:tns="http://business.dedurando.com.br" name="BusinessException" qname="fns:fault1" class="br.com.dedurando.business.BusinessException" type="tns:BusinessException"/>
+      </operation>
+      <parameter name="allowedMethods" value="register resetPassword unRegister findAll signIn find"/>
+
+      <typeMapping xmlns:ns="http://business.dedurando.com.br" qname="ns:BusinessException" type="java:br.com.dedurando.business.BusinessException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.dedurando.com.br" qname="ns:User" type="java:br.com.dedurando.bean.User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://business.dedurando.com.br" qname="ns:RegisterException" type="java:br.com.dedurando.business.RegisterException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

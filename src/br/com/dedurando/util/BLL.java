@@ -18,8 +18,8 @@ public class BLL<T> {
         validator = factory.getValidator();
 	}
 	
-	public void validate(T user) throws BusinessException{
-		Set<ConstraintViolation<T>> constraintViolations = validator.validate(user);
+	public void validate(T entity) throws BusinessException{
+		Set<ConstraintViolation<T>> constraintViolations = validator.validate(entity);
 		String errors = "";
 		if(constraintViolations.size() > 0){
 			for(ConstraintViolation<T> c : constraintViolations){

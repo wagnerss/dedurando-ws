@@ -22,21 +22,23 @@ public class UserBLL extends BLL<User> {
 	
 	public User register(User user) throws BusinessException{
 		user.setCreated_at(GregorianCalendar.getInstance());
-		//user.setStatus(StatusType.ACTIVE);
+		user.setStatus(StatusType.ACTIVE);
 		
 		this.validate(user);
 		
 		return this.save(user);
 	}	
 	
-	public User unRegister(User user) throws BusinessException{				
+	public User unRegister(User user) throws BusinessException{		
+		long id = user.getUserId();
 		user = this.find(user);
 		if(user == null){
 			throw new BusinessException("Invalid user.");
 		}
-		//user.setStatus(StatusType.INACTIVE);
+		user.setUserId(id);
+		user.setStatus(StatusType.INACTIVE);
 			
-		return this.save(user);
+		return this.update(user);
 	}
 	
 	public boolean signIn(User user) throws BusinessException{		
@@ -50,22 +52,24 @@ public class UserBLL extends BLL<User> {
 			throw new BusinessException("Invalid user name or password.");
 		}
 		
-//		if (user.getStatus() == StatusType.INACTIVE){
-//			throw new BusinessException("The user is inactive.");
-//		}			
+		if (user.getStatus() == StatusType.INACTIVE.getStatus()){
+			throw new BusinessException("The user is inactive.");
+		}			
 		
 		return true;
 	}
 	
 	public boolean resetPassword(User user) throws BusinessException{		
+		long id = user.getUserId();
 		user = this.find(user);
 		if(user == null){
 			throw new BusinessException("Invalid user.");
 		}
+		user.setUserId(id);
 				
 		user.setResetPasswordToken("fdafd-fdas-fdsa-fads-dfsa");
 		
-		this.save(user);
+		this.update(user);
 		
 		this.sendResetPassword(user);
 		
@@ -80,6 +84,23 @@ public class UserBLL extends BLL<User> {
 	{
 		try{
 			return dao.save(user);
+		}
+		catch(Exception ex){
+			if(ex.getCause().getMessage().contains("detached entity passed")){
+				throw new BusinessException("User not exists.");
+			}
+			else if(ex.getCause().getMessage().contains("DDR_USER_UK_MAIL")){
+				throw new BusinessException("E-mail " + user.getMail() + " already exists.");
+			}
+			else
+				throw new BusinessException(ex.getCause().getMessage());
+		}
+	}
+	
+	private User update(User user) throws BusinessException
+	{
+		try{
+			return dao.update(user);
 		}
 		catch(Exception ex){
 			if(ex.getCause().getMessage().contains("detached entity passed")){

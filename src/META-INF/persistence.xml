@@ -5,18 +5,45 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
         					http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
         version="2.0">
-	<persistence-unit name="development" transaction-type="RESOURCE_LOCAL">
+<persistence-unit name="developmentora" transaction-type="RESOURCE_LOCAL">
 
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class, hbm" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
 			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
-			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL" />
+			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
-			<property name="hibernate.connection.password" value="230182"/>			
-		    <property name="hibernate.connection.user" value="OPS$RM65731"/>
+			<property name="hibernate.connection.password" value="dedurando"/>			
+		    <property name="hibernate.connection.user" value="dedurando"/>
 		</properties>
 
 	</persistence-unit>
+		
+	<persistence-unit name="development1">
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class, hbm"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.password" value="w2gdb"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://mysql02.webserverbr.net:3306/dedurando"/>
+            <property name="hibernate.connection.username" value="dedurando"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.c3p0.min_size" value="5"/>
+            <property name="hibernate.c3p0.max_size" value="20"/>
+            <property name="hibernate.c3p0.timeout" value="300"/>
+            <property name="hibernate.c3p0.max_statements" value="50"/>
+            <property name="hibernate.c3p0.idle_test_period" value="3000"/>
+        </properties>
+    </persistence-unit>
+    
+    <persistence-unit name="development" transaction-type="RESOURCE_LOCAL">
+<properties>
+<property name="hibernate.connection.url" value="jdbc:mysql://mysql02.webserverbr.net:3306/dedurando"/>
+<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+<property name="hibernate.connection.password" value="w2gdb"/>
+<property name="hibernate.connection.username" value="dedurando"/>
+<property name="hibernate.hbm2ddl.auto" value="create"/>
+</properties>
+</persistence-unit>
 </persistence>

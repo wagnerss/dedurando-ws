@@ -6,21 +6,19 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity(name="user")
 @Table(name="DDR_USER")
-@SequenceGenerator(name="SEQ_GEN_USER", sequenceName="SEQ_DDR_USER", allocationSize=1)
+//@SequenceGenerator(name="SEQ_GEN_USER", sequenceName="SEQ_DDR_USER", allocationSize=1)
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(generator="SEQ_GEN_USER", strategy=GenerationType.SEQUENCE)
+	@GeneratedValue//(generator="SEQ_GEN_USER", strategy=GenerationType.SEQUENCE)
 	@Column(name="USER_ID")
 	private Long userId;
 	
@@ -75,6 +73,14 @@ public class User implements Serializable{
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusType status) {
+		this.status = status.getStatus();
 	}
 
 	public String getMail() {
