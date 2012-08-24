@@ -1,14 +1,15 @@
 package br.com.dedurando.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import br.com.dedurando.bean.Category;
 import br.com.dedurando.bean.Item;
 import br.com.dedurando.bean.Place;
 import br.com.dedurando.bean.Post;
+import br.com.dedurando.bean.StatusType;
 import br.com.dedurando.bean.User;
 import br.com.dedurando.business.BusinessException;
-import br.com.dedurando.business.PostBLL;
 import br.com.dedurando.service.PostService;
 import br.com.dedurando.util.DAO;
 
@@ -26,30 +27,40 @@ public class PostServiceTest {
 		post.setPhoto(new byte[]{});
 		post = service.save(post);
 		
-		//Assert.assertEquals("Register error", StatusType.ACTIVE, post.getStatus());
-	}
-	
-	@Test
-	public void find(Post post){
-		new PostBLL().find(post);
+		Assert.assertEquals("Register error", StatusType.ACTIVE.getStatus(), post.getItem().getStatus());
 	}
 	
 	@Test
 	public void findAll(){
-		new PostBLL().findAll();
+		Post[] posts = new PostService().findAll();
+		Assert.assertTrue(posts.length > 0);
 	}
 	
 	@Test
-	public void findAllByName(Post post){
-		new PostBLL().findAllByName(post);
+	public void find(){
+		Post post = new Post();
+		post.setPostId((long)1);
+		Post post2 =  new PostService().find(post);
+		Assert.assertNotSame("Find error", post2.getLegend(), post.getLegend());
+	} 
+	
+	@Test
+	public void findAllByName(){
+		Post post = new Post();
+		post.setLegend("Legenda teste");
+		Post[] posts = new PostService().findAllByName(post);
+		Assert.assertTrue(posts.length > 0);
 	}
 	
 	@Test
-	public void findAllByCategory(Category category){
-		new PostBLL().findAllByCategory(category);
+	public void findAllByCategory(){
+		Post[] posts = new PostService().findAllByCategory(new Category());
+		Assert.assertTrue(posts.length > 0);
 	}
-	
-	public void findRecent(Post post){
-		new PostBLL().findRecent(post);
+		
+	@Test
+	public void findRecent(){
+		Post[] posts = new PostService().findRecent(new Post());
+		Assert.assertTrue(posts.length > 0);
 	}
 }

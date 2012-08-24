@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CategoryServiceTestService WSDL service -->
+
+  <service name="CategoryServiceTest" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://test.dedurando.com.br"/>
+      <parameter name="wsdlServiceElement" value="CategoryServiceTestService"/>
+      <parameter name="schemaQualified" value="http://business.dedurando.com.br,http://test.dedurando.com.br"/>
+      <parameter name="wsdlServicePort" value="CategoryServiceTest"/>
+      <parameter name="className" value="br.com.dedurando.test.CategoryServiceTest"/>
+      <parameter name="wsdlPortType" value="CategoryServiceTest"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://test.dedurando.com.br" name="find" qname="operNS:find" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://test.dedurando.com.br" name="save" qname="operNS:save" soapAction="">
+        <fault xmlns:fns="http://test.dedurando.com.br" xmlns:tns="http://business.dedurando.com.br" name="BusinessException" qname="fns:fault" class="br.com.dedurando.business.BusinessException" type="tns:BusinessException"/>
+      </operation>
+      <operation xmlns:operNS="http://test.dedurando.com.br" name="findAll" qname="operNS:findAll" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="save findAll find"/>
+
+      <typeMapping xmlns:ns="http://business.dedurando.com.br" qname="ns:BusinessException" type="java:br.com.dedurando.business.BusinessException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

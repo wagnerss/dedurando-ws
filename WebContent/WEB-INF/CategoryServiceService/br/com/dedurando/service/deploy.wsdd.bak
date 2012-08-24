@@ -1,0 +1,54 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CategoryServiceService WSDL service -->
+
+  <service name="CategoryService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.dedurando.com.br"/>
+      <parameter name="wsdlServiceElement" value="CategoryServiceService"/>
+      <parameter name="schemaQualified" value="http://business.dedurando.com.br,http://bean.dedurando.com.br,http://service.dedurando.com.br"/>
+      <parameter name="wsdlServicePort" value="CategoryService"/>
+      <parameter name="className" value="br.com.dedurando.service.CategoryServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="CategoryService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="find" qname="operNS:find" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:findReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:Category" xmlns:rtns="http://bean.dedurando.com.br" soapAction="" >
+        <parameter qname="pns:category" xmlns:pns="http://service.dedurando.com.br" type="tns:Category" xmlns:tns="http://bean.dedurando.com.br"/>
+      </operation>
+      <operation name="save" qname="operNS:save" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:saveReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:Category" xmlns:rtns="http://bean.dedurando.com.br" soapAction="" >
+        <parameter qname="pns:category" xmlns:pns="http://service.dedurando.com.br" type="tns:Category" xmlns:tns="http://bean.dedurando.com.br"/>
+        <fault name="BusinessException" qname="fns:fault" xmlns:fns="http://service.dedurando.com.br" class="br.com.dedurando.business.BusinessException" type="tns:BusinessException" xmlns:tns="http://business.dedurando.com.br"/>
+      </operation>
+      <operation name="findAll" qname="operNS:findAll" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:findAllReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:Category" xmlns:rtns="http://bean.dedurando.com.br" soapAction="" >
+      </operation>
+      <operation name="findByName" qname="operNS:findByName" xmlns:operNS="http://service.dedurando.com.br" returnQName="retNS:findByNameReturn" xmlns:retNS="http://service.dedurando.com.br" returnType="rtns:Category" xmlns:rtns="http://bean.dedurando.com.br" soapAction="" >
+        <parameter qname="pns:category" xmlns:pns="http://service.dedurando.com.br" type="tns:Category" xmlns:tns="http://bean.dedurando.com.br"/>
+      </operation>
+      <parameter name="allowedMethods" value="save findByName findAll find"/>
+
+      <typeMapping
+        xmlns:ns="http://bean.dedurando.com.br"
+        qname="ns:Category"
+        type="java:br.com.dedurando.bean.Category"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://business.dedurando.com.br"
+        qname="ns:BusinessException"
+        type="java:br.com.dedurando.business.BusinessException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

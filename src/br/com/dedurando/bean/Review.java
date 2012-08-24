@@ -6,26 +6,26 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="DDR_REVIEW")
-@SequenceGenerator(name="SEQ_GEN_REVIEW", sequenceName="SEQ_REVIEW", allocationSize=1)
+@Table(name="DDR_POST_REVIEW")
+//@SequenceGenerator(name="SEQ_GEN_REVIEW", sequenceName="SEQ_GEN_REVIEW", allocationSize=1)
 public class Review implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(generator="SEQ_GEN_REVIEW", strategy=GenerationType.SEQUENCE)
+	@GeneratedValue//(generator="SEQ_GEN_REVIEW", strategy=GenerationType.SEQUENCE)
 	@Column(name="REVIEW_ID")
 	private Long reviewId;
 	
+	@NotNull(message= "Review Reason cannot be null.")
 	@ManyToOne
 	@JoinColumn(name="REVIEW_REASON_ID")
 	private ReviewReason reviewReason;
@@ -33,14 +33,17 @@ public class Review implements Serializable{
 	@Column(name="STATUS")
 	private char status;
 	
+	@NotNull(message= "Post cannot be null.")
 	@ManyToOne
 	@JoinColumn(name="POST_ID")
 	private Post post;
-		
+
+	@NotNull(message= "User cannot be null.")
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
 	private User user;
 		
+	@NotNull(message= "Created At cannot be null.")
 	@Column(name="CREATED_AT")
 	private Calendar createdAt;
 

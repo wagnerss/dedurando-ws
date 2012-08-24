@@ -6,32 +6,35 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="DDR_POST")
-@SequenceGenerator(name="SEQ_GEN_POST", sequenceName="SEQ_GEN_POST", allocationSize=1)
+//@SequenceGenerator(name="SEQ_GEN_POST", sequenceName="SEQ_GEN_POST", allocationSize=1)
 public class Post implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(generator="SEQ_GEN_POST", strategy=GenerationType.SEQUENCE)
-	@Column(name="DDR_POST_ID")
+	@GeneratedValue//(generator="SEQ_GEN_POST", strategy=GenerationType.SEQUENCE)
+	@Column(name="POST_ID")
 	private Long postId;
 	
+	@NotNull(message= "Item cannot be null.")
 	@ManyToOne
+	@JoinColumn(name="ITEM_ID")
 	private Item item;
 	
+	@NotNull(message= "Place cannot be null.")
 	@ManyToOne
 	@JoinColumn(name="PLACE_ID")
 	private Place place;
 
+	@NotNull(message= "User cannot be null.")
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
 	private User user;
@@ -42,6 +45,7 @@ public class Post implements Serializable{
 	@Column(name="LEGEND",length=40,nullable=true,unique=true)
 	private String legend;
 
+	@NotNull(message= "Created At cannot be null.")
 	@Column(name="CREATED_AT",nullable=false)
 	private Calendar createdAt;
 

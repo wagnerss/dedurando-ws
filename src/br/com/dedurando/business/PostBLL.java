@@ -18,6 +18,7 @@ public class PostBLL extends BLL<Post> {
 		this.validate(post);		
 		
 		try{
+			post.setCreatedAt(GregorianCalendar.getInstance());
 			dao.save(post);
 		}
 		catch(Exception ex){

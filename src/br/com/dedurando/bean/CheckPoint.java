@@ -6,25 +6,22 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="CHECK_POINT")
-@SequenceGenerator(name="seqCheckPoint", sequenceName="SEQ_CHECK_POINT", allocationSize=1)
+//@SequenceGenerator(name="seqCheckPoint", sequenceName="SEQ_CHECK_POINT", allocationSize=1)
 public class CheckPoint implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(generator="seqCheckPoint", strategy=GenerationType.SEQUENCE)
+	//@GeneratedValue(generator="seqCheckPoint", strategy=GenerationType.SEQUENCE)
 	@Column(name="CHECK_POINT_ID")
 	private Long id;
 	

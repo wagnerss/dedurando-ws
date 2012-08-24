@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.dedurando.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.dedurando.com.br" xmlns:intf="http://service.dedurando.com.br" xmlns:tns1="http://bean.dedurando.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.dedurando.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://bean.dedurando.com.br"/>
+   <element name="teste">
+    <complexType/>
+   </element>
+   <element name="testeResponse">
+    <complexType>
+     <sequence>
+      <element name="testeReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="testeR">
+    <complexType/>
+   </element>
+   <element name="testeRResponse">
+    <complexType>
+     <sequence>
+      <element name="testeRReturn" type="tns1:ReviewReason"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://bean.dedurando.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="ReviewReason">
+    <sequence>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="reviewReasonId" type="xsd:long"/>
+     <element name="status" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="testeRResponse">
+
+      <wsdl:part element="impl:testeRResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="testeRRequest">
+
+      <wsdl:part element="impl:testeR" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="testeResponse">
+
+      <wsdl:part element="impl:testeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="testeRequest">
+
+      <wsdl:part element="impl:teste" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Teste">
+
+      <wsdl:operation name="teste">
+
+         <wsdl:input message="impl:testeRequest" name="testeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:testeResponse" name="testeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="testeR">
+
+         <wsdl:input message="impl:testeRRequest" name="testeRRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:testeRResponse" name="testeRResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TesteSoapBinding" type="impl:Teste">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="teste">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="testeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="testeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="testeR">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="testeRRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="testeRResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TesteService">
+
+      <wsdl:port binding="impl:TesteSoapBinding" name="Teste">
+
+         <wsdlsoap:address location="http://localhost:8081/dedurando-ws/services/Teste"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

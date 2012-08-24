@@ -17,17 +17,27 @@
         <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:post" type="tns:Post"/>
         <fault xmlns:fns="http://service.dedurando.com.br" xmlns:tns="http://business.dedurando.com.br" name="BusinessException" qname="fns:fault" class="br.com.dedurando.business.BusinessException" type="tns:BusinessException"/>
       </operation>
-      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="findAllByNameUser" qname="operNS:findAllByNameUser" returnQName="retNS:findAllByNameUserReturn" returnType="rtns:Post" soapAction="">
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="findAll" qname="operNS:findAll" returnQName="retNS:findAllReturn" returnType="rtns:Post" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="findAllByName" qname="operNS:findAllByName" returnQName="retNS:findAllByNameReturn" returnType="rtns:Post" soapAction="">
         <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:post" type="tns:Post"/>
       </operation>
-      <parameter name="allowedMethods" value="save findAllByNameUser find"/>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="findAllByCategory" qname="operNS:findAllByCategory" returnQName="retNS:findAllByCategoryReturn" returnType="rtns:Post" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:category" type="tns:Category"/>
+      </operation>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="findRecent" qname="operNS:findRecent" returnQName="retNS:findRecentReturn" returnType="rtns:Post" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:post" type="tns:Post"/>
+      </operation>
+      <operation xmlns:operNS="http://service.dedurando.com.br" xmlns:retNS="http://service.dedurando.com.br" xmlns:rtns="http://bean.dedurando.com.br" name="findAllByLatitudeAndLongitude" qname="operNS:findAllByLatitudeAndLongitude" returnQName="retNS:findAllByLatitudeAndLongitudeReturn" returnType="rtns:Post" soapAction="">
+        <parameter xmlns:pns="http://service.dedurando.com.br" xmlns:tns="http://bean.dedurando.com.br" qname="pns:post" type="tns:Post"/>
+      </operation>
+      <parameter name="allowedMethods" value="save findAllByCategory findAll findAllByLatitudeAndLongitude findRecent findAllByName find"/>
 
-      <typeMapping xmlns:ns="http://bean.dedurando.com.br" qname="ns:Category" type="java:br.com.dedurando.bean.Category" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://bean.dedurando.com.br" qname="ns:Item" type="java:br.com.dedurando.bean.Item" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://bean.dedurando.com.br" qname="ns:Post" type="java:br.com.dedurando.bean.Post" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://bean.dedurando.com.br" qname="ns:User" type="java:br.com.dedurando.bean.User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://bean.dedurando.com.br" qname="ns:Category" type="java:br.com.dedurando.bean.Category" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://business.dedurando.com.br" qname="ns:BusinessException" type="java:br.com.dedurando.business.BusinessException" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
       <typeMapping xmlns:ns="http://bean.dedurando.com.br" qname="ns:Place" type="java:br.com.dedurando.bean.Place" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
-      <arrayMapping xmlns:ns="http://service.dedurando.com.br" xmlns:cmp-ns="http://bean.dedurando.com.br" qname="ns:ArrayOf_tns1_Category" type="java:br.com.dedurando.bean.Category[]" innerType="cmp-ns:Category" encodingStyle=""/>
   </service>
 </deployment>

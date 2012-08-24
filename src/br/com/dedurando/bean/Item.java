@@ -5,25 +5,21 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="POINT")
-@SequenceGenerator(name="SEQ_GEN_ITEM", sequenceName="SEQ_ITEM", allocationSize=1)
+@Table(name="DDR_ITEM")
+//@SequenceGenerator(name="SEQ_GEN_ITEM", sequenceName="SEQ_GEN_ITEM", allocationSize=1)
 public class Item implements Serializable{
-	
-	public Item(){}
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name="ITEM_ID")
-	@GeneratedValue(generator="SEQ_GEN_ITEM", strategy=GenerationType.SEQUENCE)
+	@GeneratedValue//(generator="SEQ_GEN_ITEM", strategy=GenerationType.SEQUENCE)
 	private Long itemId;
 	
 	@ManyToOne
@@ -33,8 +29,8 @@ public class Item implements Serializable{
 	@Column(name="NAME", length=50)
 	private String name;
 
-//	@Column(name="STATUS")
-//	private StatusType status;
+	@Column(name="STATUS")
+	private int status;
 
 	public Long getItemId() {
 		return itemId;
@@ -60,13 +56,13 @@ public class Item implements Serializable{
 		this.name = name;
 	}
 
-//	public StatusType getStatus() {
-//		return status;
-//	}
-//
-//	public void setStatus(StatusType status) {
-//		this.status = status;
-//	}
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusType status) {
+		this.status = status.getStatus();
+	}
 
 	public String getDescription() {
 		return description;
