@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="DDR_CATEGORY")
 //@SequenceGenerator(name="SEG_GEN_CATEGORY", sequenceName="SEG_GEN_CATEGORY", allocationSize=1)
+@XmlRootElement
 public class Category implements Serializable{
 
 	private static final long serialVersionUID = 1L;

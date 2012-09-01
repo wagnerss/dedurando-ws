@@ -11,12 +11,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name="DDR_POST")
 //@SequenceGenerator(name="SEQ_GEN_POST", sequenceName="SEQ_GEN_POST", allocationSize=1)
+@XmlRootElement
 public class Post implements Serializable{
 
+	public Post(){}
+	
+	public Post(String legend, Item item, Place place, User user, byte[] photo){
+		this.legend = legend;
+		this.item = item;
+		this.place = place;
+		this.user = user;
+		this.photo = photo;
+	}
+	
 	private static final long serialVersionUID = 1L;
 	
 	@Id

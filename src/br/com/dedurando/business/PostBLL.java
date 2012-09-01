@@ -12,6 +12,10 @@ public class PostBLL extends BLL<Post> {
     
 	private PostDAO dao = new PostDAO();
     
+	public boolean delete(Post post){
+		return dao.delete(post.getPostId());
+	}
+	
 	public Post save(Post post) throws BusinessException{
 		post.setCreatedAt(GregorianCalendar.getInstance());
 		
