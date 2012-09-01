@@ -51,14 +51,28 @@ public class DAO<T> {
 		return entity;
 	}
 	
-	public void delete(T entity){
-		EntityManager em = new JPAUtil().getEntityManager();
-		em.remove(entity);
+	public boolean delete(long id) {
+		try {
+			EntityManager em = new JPAUtil().getEntityManager();
+			EntityTransaction t = em.getTransaction();
+			t.begin();
+			em.remove(this.findByID(id));
+			t.commit();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
-	 @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public List<T> findAll(){
 		  EntityManager em = new JPAUtil().getEntityManager();
-		  return em.createQuery("select e from " + klass.getName() + " e").getResultList();
+		  return em.createQuery("from " + klass.getName()).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> findAllByStringPropertyName(String propertyName, String value){
+		  EntityManager em = new JPAUtil().getEntityManager();
+		  return em.createQuery("from " + klass.getName() + " as e where e." + propertyName + " like '"+ value + "'").getResultList();
 	}
 }

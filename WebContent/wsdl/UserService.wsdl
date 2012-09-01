@@ -471,7 +471,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:UserServiceSoapBinding" name="UserService">
 
-         <wsdlsoap:address location="http://tempuri.org/dedurando-ws/services/UserService"/>
+         <wsdlsoap:address location="http://localhost:8081/dedurando-ws/services/UserService"/>
 
       </wsdl:port>
 
