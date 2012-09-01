@@ -31,7 +31,9 @@ public class UserBLL extends BLL<User> {
 	
 	public User unRegister(User user) throws BusinessException{		
 		long id = user.getUserId();
-		user = this.find(user);
+		List<User> list = dao.findAllByStringPropertyName("mail", user.getMail());
+		if(list.size() > 0)
+			user = list.get(0); 
 		if(user == null){
 			throw new BusinessException("Invalid user.");
 		}
@@ -42,13 +44,12 @@ public class UserBLL extends BLL<User> {
 	}
 	
 	public boolean signIn(User user) throws BusinessException{		
-		User userDB = this.find(user);
+		User userDB = null;
+		List<User> list = dao.findAllByStringPropertyName("mail", user.getMail());
+		if(list.size() > 0)
+			userDB = list.get(0); 
 		
-		if(userDB == null){
-			throw new BusinessException("Invalid user.");
-		}
-		
-		if (user.getPassword() != user.getPassword()){
+		if (userDB == null || user.getPassword() != userDB.getPassword()){
 			throw new BusinessException("Invalid user name or password.");
 		}
 		
